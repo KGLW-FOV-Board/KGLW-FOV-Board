@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Field of Vision Signing Board</title>
+
+  <!-- Groovy font -->
+  <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Unbounded:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg1: #0f0216;
+      --accent1: #ff2d95;
+      --accent2: #30ffee;
+      --accent3: #ffd400;
+      --glass: rgba(255,255,255,0.06);
+      --card-w: 560px; /* slightly larger than the 535px embed to give padding */
+      --card-max: 92vw;
+    }
+
+    /* Page reset */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: "Unbounded", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: var(--bg1);
+      color: white;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow-x:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:4vh 3vw;
+    }
+
+    /* Animated psychedelic layers */
+    .bg-wrap{
+      position:fixed;
+      inset:0;
+      z-index:-3;
+      overflow:hidden;
+      pointer-events:none;
+    }
+    .bg-wrap::before, .bg-wrap::after{
+      content:"";
+      position:absolute;
+      inset:-20% -10% -20% -10%;
+      background: conic-gradient(from 120deg, rgba(255,45,149,0.12), rgba(48,255,238,0.12), rgba(255,212,0,0.12), rgba(255,45,149,0.12));
+      filter: blur(60px) saturate(140%);
+      transform: translateZ(0);
+      animation: spin 18s linear infinite;
+      mix-blend-mode: screen;
+      opacity:0.95;
+    }
+    .bg-wrap::after{
+      animation-duration: 26s;
+      filter: blur(110px) saturate(200%);
+      opacity:0.85;
+      transform-origin: 60% 40%;
+      mix-blend-mode: overlay;
+    }
+    @keyframes spin{
+      from{transform: rotate(0deg) scale(1)}
+      to{transform: rotate(360deg) scale(1.05)}
+    }
+
+    /* Main container */
+    .stage{
+      width: min(var(--card-w), var(--card-max));
+      max-width: 100%;
+      text-align: center;
+      padding: clamp(20px, 3.5vh, 36px);
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      box-shadow:
+        0 6px 30px rgba(0,0,0,0.7),
+        0 0 80px rgba(48,255,238,0.06),
+        inset 0 1px 0 rgba(255,255,255,0.02);
+      backdrop-filter: blur(6px) saturate(120%);
+      border: 1px solid rgba(255,255,255,0.06);
+      position: relative;
+      overflow: visible;
+      transform: perspective(600px) translateY(0);
+      animation: floaty 6s ease-in-out infinite;
+    }
+
+    @keyframes floaty{
+      0% { transform: translateY(-6px) rotateX(0.2deg) }
+      50% { transform: translateY(6px) rotateX(-0.2deg) }
+      100% { transform: translateY(-6px) rotateX(0.2deg) }
+    }
+
+    /* Title styling */
+    h1{
+      font-family: "Righteous", "Unbounded", system-ui, sans-serif;
+      font-size: clamp(1.6rem, 3.6vw, 2.4rem);
+      letter-spacing: 0.06em;
+      margin-bottom: clamp(12px, 2.2vh, 20px);
+      line-height:1.05;
+      color: white;
+      text-shadow:
+        0 0 0px rgba(255,255,255,0.04),
+        -6px 2px 14px rgba(255,45,149,0.18),
+        6px -4px 20px rgba(48,255,238,0.12);
+      transform: skewX(-6deg);
+      display:inline-block;
+      padding: 8px 18px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(255,45,149,0.06), rgba(48,255,238,0.05));
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+
+    /* Subtitle / vibe line */
+    .vibe{
+      font-size: clamp(0.78rem, 1.6vw, 1rem);
+      opacity: 0.9;
+      margin-bottom: clamp(16px, 3vh, 24px);
+      color: rgba(255,255,255,0.92);
+    }
+
+    /* The card that holds the embed script */
+    .embed-card{
+      display:block;
+      margin: 0 auto;
+      width: min(92%, 535px);
+      max-width: 100%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius: 14px;
+      padding: 14px;
+      box-shadow:
+         0 8px 30px rgba(0,0,0,0.6),
+         0 0 40px rgba(255,45,149,0.04),
+         inset 0 1px 0 rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.04);
+      position: relative;
+      overflow: visible;
+      transition: transform 220ms ease;
+    }
+    .embed-card:hover { transform: translateY(-6px) rotateZ(-0.2deg) }
+
+    /* Subtle groovy border accent */
+    .embed-card::before{
+      content:"";
+      position:absolute;
+      inset: -2px;
+      border-radius: 16px;
+      padding:2px;
+      background: conic-gradient(from 140deg, rgba(255,45,149,0.06), rgba(48,255,238,0.06), rgba(255,212,0,0.06));
+      z-index:-1;
+      filter: blur(8px) saturate(140%);
+      mix-blend-mode: screen;
+      opacity:0.9;
+    }
+
+    /* Fallback / loading area for the script (so it's visually centered) */
+    .embed-holder{
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height: 160px;
+    }
+
+    /* Footer / credits */
+    .credit{
+      margin-top:14px;
+      font-size:0.78rem;
+      opacity:0.8;
+      color: rgba(255,255,255,0.9);
+    }
+
+    /* responsive tweaks */
+    @media (max-width:420px){
+      .stage{ padding:18px }
+      h1{ font-size:1.2rem }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="bg-wrap" aria-hidden="true"></div>
+
+  <main class="stage" role="main" aria-labelledby="page-title">
+    <h1 id="page-title">Field of Vision Signing Board</h1>
+    <p class="vibe" aria-hidden="true">sign, vibe & expand — psychedelic visual board</p>
+
+    <div class="embed-card" aria-live="polite">
+      <div class="embed-holder" id="embed">
+        <!-- The exact script you asked for is embedded below -->
+        <script src="https://zoomhub.net/jkG2o.js?width=535px&height=auto&border=none"></script>
+      </div>
+      <div class="credit">If the embed doesn't appear, make sure external scripts are allowed by your browser.</div>
+    </div>
+
+  </main>
+</body>
+</html>
