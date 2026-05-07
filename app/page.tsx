@@ -26,7 +26,7 @@ const Heavitas = localFont({
   variable: "--font-myfont",
 });
 
-const card = "w-42 h-24 flex items-center justify-center text-center text-lg font-[Hevitas] p-4 bg-black/80 border border-white/10 rounded-xl hover:scale-105 transition";
+const card = "w-42 h-24 flex items-center justify-center text-center text-lg text-white font-[Hevitas] p-4 bg-black/80 border border-white/10 rounded-xl hover:scale-105 transition";
 /*"card min-h-[80px] max-w-[150px] flex items-center justify-center text-center p-4 bg-black/50 border border-white/10 rounded-xl hover:scale-105 transition"*/
 /*      bg-cover
         bg-center
@@ -135,7 +135,7 @@ export default function Home() {
         >
           At Field Of Vision 2025...
         </h1>
-        <div ref={sectionRef} className="grid grid-cols-2 gap-40 w-[80%] max-w-8xl mx-auto">
+        <div ref={sectionRef} className="grid grid-cols-2 gap-8 lg:gap-30 w-[80%] max-w-8xl mx-auto">
 
           {/* top-left image */}
           <div className="overflow-hidden">
@@ -146,6 +146,7 @@ export default function Home() {
           <div className="flex items-center justify-center">
 
             <div className="
+              z-11
               inline-block
               max-w
               p-10
@@ -156,6 +157,7 @@ export default function Home() {
               text-3xl
               text-center
               font-[Hevitas]
+              text-white
             ">
               We banded together to tell King Gizzard how much we love them for everything they do for us!
               The insane amount of quality albums filled with love and soul, the bootleg support for artists across the globe,
@@ -168,6 +170,7 @@ export default function Home() {
 
           <div className="flex items-center justify-center">
             <div className="
+              z-11
               inline-block
               max-w
               p-10
@@ -178,6 +181,7 @@ export default function Home() {
               text-3xl
               text-center
               font-[Hevitas]
+              text-white
             ">
               Sign your name, write a heartfelt message, tell a joke, a pun, an admission, or make some art! Anything you
               want to say to them, put it on there, because if the first year of doing this WE GOT IT BACKSTAGE!
@@ -235,6 +239,7 @@ export default function Home() {
           className="
             font-[Hevitas]
             space-y-6
+            text-white
           "
         >
           <p>Well don't worry!</p>
