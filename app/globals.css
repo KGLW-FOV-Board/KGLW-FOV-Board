@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+.stroke-text {
+  -webkit-text-stroke: 4px red;
+}
+
+.gradient-stroke {
+  color: #22c55e;
+  text-shadow:
+    2px 2px 0 #75032b,
+   -2px 2px 0 #75032b,
+    2px -2px 0 #1a8c70,
+   -2px -2px 0 #1a8c70;
+  paint-order: stroke fill;
+}
+
+/* =========================
+   OPENSEADRAGON THEME
+   ========================= */
+
+.gizz-osd-theme .openseadragon-container {
+  background: radial-gradient(circle at top left, #75032b, #0b0b0b 60%);
+}
+
+/* Toolbar strip */
+.gizz-osd-theme .openseadragon-controls {
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(26, 140, 112, 0.4);
+  border-radius: 12px;
+  padding: 6px;
+}
+
+/* All buttons */
+.gizz-osd-theme .openseadragon-button {
+  width: 30px;
+  height: 30px;
+  margin: 2px;
+
+  background: linear-gradient(135deg, #75032b, #1a8c70);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  color: white;
+  font-size: 14px;
+  border-radius: 6px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+/* Hover state */
+.gizz-osd-theme .openseadragon-button:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
+
+/* Active click state */
+.gizz-osd-theme .openseadragon-button:active {
+  transform: scale(0.95);
+}
+
+/* Disabled state */
+.gizz-osd-theme .openseadragon-button.disabled {
+  opacity: 0.3;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
