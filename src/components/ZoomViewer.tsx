@@ -6,7 +6,8 @@ export default function ZoomViewer() {
   const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (!ref.current) return;
+    const el = ref.current;
+    if (!el) return;
 
     let viewer: any;
 
@@ -14,7 +15,7 @@ export default function ZoomViewer() {
       const OpenSeadragon = (await import("openseadragon")).default;
 
       viewer = OpenSeadragon({
-        element: ref.current,
+        element: el,
         prefixUrl:
           "https://openseadragon.github.io/openseadragon/images/",
         tileSources: "/2025_board.dzi",
