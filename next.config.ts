@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   basePath: "/KGLW-FOV-Board",
-  assetPrefix: "/KGLW-FOV-Board",
+  assetPrefix: "/KGLW-FOV-Board/",
 };
 
 module.exports = nextConfig;
