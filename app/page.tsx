@@ -26,7 +26,7 @@ const Heavitas = localFont({
   variable: "--font-myfont",
 });
 
-const card = "w-42 h-24 flex items-center justify-center text-center text-lg font-[Hevitas] p-4 bg-black/50 border border-white/10 rounded-xl hover:scale-105 transition";
+const card = "w-42 h-24 flex items-center justify-center text-center text-lg font-[Hevitas] p-4 bg-black/80 border border-white/10 rounded-xl hover:scale-105 transition";
 /*"card min-h-[80px] max-w-[150px] flex items-center justify-center text-center p-4 bg-black/50 border border-white/10 rounded-xl hover:scale-105 transition"*/
 /*      bg-cover
         bg-center
@@ -47,20 +47,20 @@ export default function Home() {
     >
       {/* Background 2 (fades) */}
       <div
-        className="fixed inset-0 bg-cover bg-center z-[-1] transition-opacity duration-150 scale-125"
-        style={{ backgroundImage: "url('./bg_2.svg')" }}
+        className="fixed inset-0 bg-cover bg-center z-[-1] transition-opacity duration-150"
+        style={{ backgroundImage: "url('./bg_1.svg')" }}
       />
       {/* Background 1 */}
       <div
         ref={fadeRef}
-        className="fixed inset-0 bg-cover bg-center z-[-1] transition-opacity duration-150"
-        style={{ backgroundImage: "url('./bg_1.svg')" }}
+        className="fixed inset-0 bg-cover bg-center z-[-1] transition-opacity duration-150 scale-108"
+        style={{ backgroundImage: "url('./bg_2.svg')" }}
       />
       <BackgroundFade sectionRef={sectionRef} fadeRef={fadeRef} />
       <div className="space-y-3 w-[90%]">
         <h1 
           className="
-            font-[Gladolia]
+            font-[DavidaOpti]
             text-center 
             text-[clamp(8rem,40vw,10rem)]
             text-8xl 
@@ -78,8 +78,8 @@ export default function Home() {
           className="
             overflow-hidden 
             rounded-3xl
-            w-[80vw] 
-            aspect-[90/66] 
+            w-[75vw] 
+            h-[47vw] 
             mx-auto 
             border-8 
             border-black
@@ -143,46 +143,78 @@ export default function Home() {
           </div>
 
           {/* top-right text */}
-          <div className="flex items-center justify-center text-center aspect-square p-6 bg-black/80 rounded-xl rounded-bl-none rounded-br-3xl text-2xl font-[Hevitas]">
-            We banded together to tell King Gizzard how much we love them for everything they do for us!
-            The insane amount of quality albums filled with love and soul, the bootleg support for artists across the globe,
-            and the genuine care for their fans at the live shows! They deserve to know that WE LOVE THEM BACK!
+          <div className="flex items-center justify-center">
+
+            <div className="
+              inline-block
+              max-w
+              p-10
+              bg-black/80
+              rounded-xl
+              rounded-bl-none
+              rounded-br-3xl
+              text-3xl
+              text-center
+              font-[Hevitas]
+            ">
+              We banded together to tell King Gizzard how much we love them for everything they do for us!
+              The insane amount of quality albums filled with love and soul, the bootleg support for artists across the globe,
+              and the genuine care for their fans at the live shows! They deserve to know that WE LOVE THEM BACK!
+            </div>
+
           </div>
 
           {/* bottom-left text */}
-          <div className="flex items-center justify-center text-center aspect-square p-6 bg-black/80 rounded-xl rounded-bl-none rounded-br-3xl text-2xl font-[Hevitas]">
-            Sign your name, write a heartfelt message, tell a joke, a pun, an admission, or make some art! Anything you
-            want to say to them, put it on there, because if the first year of doing this WE GOT IT BACKSTAGE!
+
+          <div className="flex items-center justify-center">
+            <div className="
+              inline-block
+              max-w
+              p-10
+              bg-black/80
+              rounded-xl
+              rounded-bl-none
+              rounded-br-3xl
+              text-3xl
+              text-center
+              font-[Hevitas]
+            ">
+              Sign your name, write a heartfelt message, tell a joke, a pun, an admission, or make some art! Anything you
+              want to say to them, put it on there, because if the first year of doing this WE GOT IT BACKSTAGE!
+            </div>
           </div>
 
           {/* bottom-right polaroid */}
           <div className="relative aspect-square w-full">
 
             {/* MAIN IMAGE */}
-            <div className="absolute inset-0 overflow-hidden z-20">
-              <img src="./polaroid.jpg" className="w-full h-full object-cover rounded-xl border-4 border-[#4f1319]" />
+            <div className="absolute inset-0 overflow-hidden z-5 rounded-xl border-4 border-[#4f1319]">
+              <img src="./polaroid.jpg" className="w-full h-full object-cover scale-[1.2] object-[-10px_75%] " />
             </div>
 
             {/* SCRAPS */}
 
+            /*Top Left*/
             <img
               src="./scrap1.png" 
-              className="absolute z-10 w-[25%] top-0 left-0 -translate-x-1/2 -translate-y-1/2 rotate-[-22deg] shadow-xl border border-white"
+              className="absolute z-10 w-[25%] top-0 left-0 -translate-x-1/2 -translate-y-1/2 scale-[1.3] rotate-[-22deg] shadow-xl border border-[#4f1319]"
             />
-
+            /*Top Right*/
             <img
               src="./scrap2.png"
-              className="absolute z-10 w-[25%] top-0 right-0 translate-x-1/2 -translate-y-1/2 rotate-[10deg] shadow-xl border border-white"
+              className="absolute z-10 w-[25%] top-0 right-0 translate-x-1/2 -translate-y-1/2 scale-[2] rotate-[33deg] shadow-xl border border-[#4f1319]"
             />
 
+            /*Bottom Left*/
             <img
               src="./scrap3.png"
-              className="absolute z-10 w-[25%] bottom-0 left-0 -translate-x-1/2 translate-y-1/2 rotate-[6deg] shadow-xl border border-white"
+              className="absolute z-10 w-[25%] bottom-0 left-0 -translate-x-4/5 translate-y-1/2 scale-[1.7] rotate-[-20deg] shadow-xl border border-[#4f1319]"
             />
 
+            /*Bottom Right*/
             <img
               src="./scrap4.png"
-              className="absolute z-10 w-[25%] bottom-0 right-0 translate-x-1/2 translate-y-1/2 rotate-[-10deg] shadow-xl border border-white"
+              className="absolute z-10 w-[25%] bottom-0 right-0 translate-x-1/2 translate-y-1/2 scale-[2.5] rotate-[-30deg] shadow-xl border border-[#4f1319]"
             />
           </div>
         </div>
@@ -190,7 +222,7 @@ export default function Home() {
           className="
             pt-[150px]
             font-[Roberta]
-            text-5xl
+            text-7xl
             underline
             decoration-blue-500
             decoration-2 
@@ -211,7 +243,7 @@ export default function Home() {
             (Currently under construction so it doesnt blow away in the wind like last time.)
           </p>
           <p>
-            Keep a look out on r/KGATLW for the post about the second board where we will as YOU
+            Keep a look out on r/KGATLW for the post about the second board where we will ask YOU
             guys to make the heading! Finally, with all that said...
           </p>
         </div>
@@ -233,7 +265,7 @@ export default function Home() {
         </h1>
         <div className="w-full flex justify-center mt-12">
           <img
-            src="./peeker.png"
+            src="./fov.png"
             className="w-64 h-auto"
           />
         </div>
