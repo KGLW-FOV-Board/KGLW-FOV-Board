@@ -1,5 +1,5 @@
 {
-  "name": "gizzboard-app",
+  "name": "kglw-fov-board",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "biome check",
-    "lint:fix": "biome format --write"
+    "lint:fix": "biome format --write",
+    "export": "next export",
+    "deploy": "next build && next export"
   },
   "dependencies": {
     "dzi": "^0.0.5",
