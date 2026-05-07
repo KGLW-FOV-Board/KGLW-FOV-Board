@@ -18,7 +18,7 @@ export default function ZoomViewer() {
         element: el,
         prefixUrl:
           "https://openseadragon.github.io/openseadragon/images/",
-        tileSources: "/2025_board.dzi",
+        tileSources: "./2025_board.dzi",
         showNavigator: false,
         maxZoomPixelRatio: 10,
       });

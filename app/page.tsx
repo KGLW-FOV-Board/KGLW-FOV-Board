@@ -48,13 +48,13 @@ export default function Home() {
       {/* Background 2 (fades) */}
       <div
         className="fixed inset-0 bg-cover bg-center z-[-1] transition-opacity duration-150 scale-125"
-        style={{ backgroundImage: "url('/bg_2.svg')" }}
+        style={{ backgroundImage: "url('./bg_2.svg')" }}
       />
       {/* Background 1 */}
       <div
         ref={fadeRef}
         className="fixed inset-0 bg-cover bg-center z-[-1] transition-opacity duration-150"
-        style={{ backgroundImage: "url('/bg_1.svg')" }}
+        style={{ backgroundImage: "url('./bg_1.svg')" }}
       />
       <BackgroundFade sectionRef={sectionRef} fadeRef={fadeRef} />
       <div className="space-y-3 w-[90%]">
@@ -160,28 +160,28 @@ export default function Home() {
 
             {/* MAIN IMAGE */}
             <div className="absolute inset-0 overflow-hidden z-20">
-              <img src="/polaroid.jpg" className="w-full h-full object-cover rounded-xl border-4 border-[#4f1319]" />
+              <img src="./polaroid.jpg" className="w-full h-full object-cover rounded-xl border-4 border-[#4f1319]" />
             </div>
 
             {/* SCRAPS */}
 
             <img
-              src="/scrap1.png" 
+              src="./scrap1.png" 
               className="absolute z-10 w-[25%] top-0 left-0 -translate-x-1/2 -translate-y-1/2 rotate-[-22deg] shadow-xl border border-white"
             />
 
             <img
-              src="/scrap2.png"
+              src="./scrap2.png"
               className="absolute z-10 w-[25%] top-0 right-0 translate-x-1/2 -translate-y-1/2 rotate-[10deg] shadow-xl border border-white"
             />
 
             <img
-              src="/scrap3.png"
+              src="./scrap3.png"
               className="absolute z-10 w-[25%] bottom-0 left-0 -translate-x-1/2 translate-y-1/2 rotate-[6deg] shadow-xl border border-white"
             />
 
             <img
-              src="/scrap4.png"
+              src="./scrap4.png"
               className="absolute z-10 w-[25%] bottom-0 right-0 translate-x-1/2 translate-y-1/2 rotate-[-10deg] shadow-xl border border-white"
             />
           </div>
@@ -233,7 +233,7 @@ export default function Home() {
         </h1>
         <div className="w-full flex justify-center mt-12">
           <img
-            src="/peeker.png"
+            src="./peeker.png"
             className="w-64 h-auto"
           />
         </div>
