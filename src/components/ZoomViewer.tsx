@@ -26,18 +26,39 @@ export default function ZoomViewer() {
       // Button Theme
       viewer.element.classList.add("gizz-osd-theme");
 
-      // ✅ ROTATE BUTTON
+      // ✅ ROTATE CLOCKWISE BUTTON
       viewer.addHandler("open", () => {
         const btn = document.createElement("button");
 
         btn.innerHTML = "⟳";
-        btn.title = "Rotate 90°";
+        btn.title = "Rotate Clockwise 90°";
         btn.style.cursor = "pointer";
         btn.className = "openseadragon-button";
 
         btn.onclick = () => {
           const current = viewer.viewport.getRotation();
           viewer.viewport.setRotation(current + 90);
+        };
+
+        viewer.addControl(btn, {
+          anchor: OpenSeadragon.ControlAnchor.TOP_RIGHT,
+        });
+
+        viewer.element.classList.add("gizz-osd-theme")
+      });
+    
+      // ✅ ROTATE CLOCKWISE BUTTON
+      viewer.addHandler("open", () => {
+        const btn = document.createElement("button");
+
+        btn.innerHTML = "⟲";
+        btn.title = "Rotate Counter-clockwise 90°";
+        btn.style.cursor = "pointer";
+        btn.className = "openseadragon-button";
+
+        btn.onclick = () => {
+          const current = viewer.viewport.getRotation();
+          viewer.viewport.setRotation(current - 90);
         };
 
         viewer.addControl(btn, {
