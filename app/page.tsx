@@ -139,7 +139,7 @@ export default function Home() {
 
           {/* top-left image */}
           <div className="overflow-hidden">
-            <img src="/signing.png" className="w-full h-full object-cover border-4 border-[#4f1319] rounded-xl" />
+            <img src="./signing.png" className="w-full h-full object-cover border-4 border-[#4f1319] rounded-xl" />
           </div>
 
           {/* top-right text */}
