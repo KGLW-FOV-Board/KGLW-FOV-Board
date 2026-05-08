@@ -27,11 +27,7 @@ const Heavitas = localFont({
 });
 
 const card = "w-42 h-24 flex items-center justify-center text-center text-lg text-white font-[Hevitas] p-4 bg-black/80 border border-white/10 rounded-xl hover:scale-105 transition";
-/*"card min-h-[80px] max-w-[150px] flex items-center justify-center text-center p-4 bg-black/50 border border-white/10 rounded-xl hover:scale-105 transition"*/
-/*      bg-cover
-        bg-center
-        bg-[url(/bg_1.svg)]
-*/
+
 export default function Home() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const fadeRef = useRef<HTMLDivElement | null>(null);
@@ -39,10 +35,6 @@ export default function Home() {
     <div 
       className="
         min-h-screen
-        flex
-        items-center
-        justify-center
-        pt-15
       "
     >
       {/* Background 2 (fades) */}
@@ -57,29 +49,41 @@ export default function Home() {
         style={{ backgroundImage: "url('./bg_2.svg')" }}
       />
       <BackgroundFade sectionRef={sectionRef} fadeRef={fadeRef} />
-      <div className="space-y-3 w-[90%]">
-        <h1 
-          className="
-            font-[DavidaOpti]
-            text-center 
-            text-[clamp(8rem,40vw,10rem)]
-            text-8xl 
-            text-green-500 
-            gradient-stroke
-          "
-          style={{
-            transform: "perspective(200px) rotateX(20deg)",
-            transformOrigin: "center bottom",
-          }}
-        >
-          The Weirdo Board
-        </h1>
+      <div className="space-y-3 w-[90%] mx-auto mt-20">
+        <div className="flex justify-center w-full overflow-hidden">
+          <h1 
+            className="
+              font-[DavidaOpti]
+              text-center 
+              text-5xl
+              sm:text-7xl
+              lg:text-[10rem]
+              text-8xl 
+              text-green-500 
+              gradient-stroke
+            "
+            style={{
+              transform: "perspective(200px) rotateX(20deg)",
+              transformOrigin: "center bottom",
+            }}
+          >
+            The Weirdo Board
+          </h1>
+        </div>
         <div 
           className="
             overflow-hidden 
             rounded-3xl
-            w-[75vw] 
-            h-[47vw] 
+
+            w-[95vw]
+            h-[65vw]
+
+            sm:w-[85vw]
+            sm:h-[55vw]
+
+            lg:w-[75vw]
+            lg:h-[47vw]
+
             mx-auto 
             border-8 
             border-black
@@ -96,7 +100,14 @@ export default function Home() {
         >
           Can you find all of the hidden art?
         </h2>
-        <div className="flex flex-col items-center gap-6">
+        <div 
+          className="
+            flex
+            flex-col
+            items-center
+            gap-6
+          "
+        >
           {/* Row 1: 5 items */}
           <div className="flex gap-4">
             <div className={card}>15 Lizards</div>
@@ -105,6 +116,7 @@ export default function Home() {
             <div className={card}>1 Frog</div>
             <div className={card}>3 Fishies Faces</div>
           </div>
+
           {/* Row 2: 4 centered items */}
           <div className="flex gap-4">
             <div className={card}>1 Rattlesnake</div>
@@ -113,6 +125,7 @@ export default function Home() {
             <div className={card}>4 Mushrooms</div>
           </div>
         </div>
+
         <h2 
           className="
             text-center 
@@ -135,90 +148,211 @@ export default function Home() {
         >
           At Field Of Vision 2025...
         </h1>
-        <div ref={sectionRef} className="grid grid-cols-2 gap-8 lg:gap-30 w-[80%] max-w-8xl mx-auto">
+        <div 
+          ref={sectionRef} 
+          className="
+            grid
+            grid-cols-1
+            lg:grid-cols-2
+            gap-8
+            lg:gap-30
+            w-[80%]
+            mx-auto
+          "
+        >
 
           {/* top-left image */}
           <div className="overflow-hidden">
-            <img src="./signing.png" className="w-full h-full object-cover border-4 border-[#4f1319] rounded-xl" />
+            <img 
+              src="./signing.png"
+              className="
+                w-full
+                h-full
+                mt-15
+                object-cover
+                border-4
+                border-[#4f1319]
+                rounded-xl
+              "
+            />
           </div>
 
           {/* top-right text */}
           <div className="flex items-center justify-center">
-
-            <div className="
-              z-11
-              inline-block
-              max-w
-              p-10
-              bg-black/80
-              rounded-xl
-              rounded-bl-none
-              rounded-br-3xl
-              text-3xl
-              text-center
-              font-[Hevitas]
-              text-white
-            ">
+            <div 
+              className="
+                z-11
+                inline-block
+                max-w
+                p-10
+                bg-black/80
+                rounded-xl
+                rounded-bl-none
+                rounded-br-3xl
+                text-xl
+                lg:text-2xl
+                text-center
+                font-[Hevitas]
+                text-white
+              "
+            >
               We banded together to tell King Gizzard how much we love them for everything they do for us!
               The insane amount of quality albums filled with love and soul, the bootleg support for artists across the globe,
               and the genuine care for their fans at the live shows! They deserve to know that WE LOVE THEM BACK!
             </div>
-
           </div>
 
           {/* bottom-left text */}
-
-          <div className="flex items-center justify-center">
-            <div className="
-              z-11
-              inline-block
-              max-w
-              p-10
-              bg-black/80
-              rounded-xl
-              rounded-bl-none
-              rounded-br-3xl
-              text-3xl
-              text-center
-              font-[Hevitas]
-              text-white
-            ">
+          <div
+            className="
+              flex 
+              items-center
+              justify-center
+            "
+          >
+            <div 
+              className="
+                z-11
+                inline-block
+                max-w
+                p-10
+                bg-black/80
+                rounded-xl
+                rounded-bl-none
+                rounded-br-2xl
+                text-xl
+                lg:text-3xl
+                text-center
+                font-[Hevitas]
+                text-white
+              "
+            >
               Sign your name, write a heartfelt message, tell a joke, a pun, an admission, or make some art! Anything you
               want to say to them, put it on there, because if the first year of doing this WE GOT IT BACKSTAGE!
             </div>
           </div>
 
           {/* bottom-right polaroid */}
-          <div className="relative aspect-square w-full">
-
+          <div 
+            className="
+              relative
+              sm:left-10
+              scale-[0.9]
+              lg:scale-100
+              my-37
+              mx-10
+              aspect-square
+              w-[60vw]
+              lg:w-full 
+            "
+          >
             {/* MAIN IMAGE */}
-            <div className="absolute inset-0 overflow-hidden z-5 rounded-xl border-4 border-[#4f1319]">
-              <img src="./polaroid.jpg" className="w-full h-full object-cover scale-[1.2] object-[-10px_75%] " />
+            <div 
+              className="
+                absolute
+                inset-0
+                overflow-hidden
+                z-5
+                rounded-xl
+                border-4
+                border-[#4f1319]
+              "
+            >
+              <img 
+                src="./polaroid.jpg"
+                className="
+                  w-full
+                  h-full
+                  object-cover
+                  scale-[1.2]
+                  object-[-10px_75%]
+                "
+              />
             </div>
 
             {/* SCRAPS */}
 
-            /*Top Left*/
+            {/*Top Left*/}
             <img
               src="./scrap1.png" 
-              className="absolute z-10 w-[25%] top-0 left-0 -translate-x-1/2 -translate-y-1/2 scale-[1.3] rotate-[-22deg] shadow-xl border border-[#4f1319]"
+              className="
+                absolute
+                z-10 
+                w-[18%] 
+                lg:w-[25%]
+                scale-[1.1]
+                lg:scale-[1.3]
+                top-0
+                left-0
+                -translate-x-1/2
+                -translate-y-1/2
+                rotate-[-22deg]
+                shadow-xl
+                border
+                border-[#4f1319]
+              "
             />
-            /*Top Right*/
+            {/*Top Right*/}
             <img
               src="./scrap2.png"
-              className="absolute z-10 w-[25%] top-0 right-0 translate-x-1/2 -translate-y-1/2 scale-[2] rotate-[33deg] shadow-xl border border-[#4f1319]"
+              className="
+                absolute
+                z-10
+                w-[18%] 
+                lg:w-[25%]
+                scale-[2]
+                lg:scale-[2]
+                top-0
+                right-0
+                translate-x-1/2
+                -translate-y-1/2
+                rotate-[33deg]
+                shadow-xl
+                border
+                border-[#4f1319]"
             />
 
-            /*Bottom Left*/
+            {/*Bottom Left*/}
             <img
               src="./scrap3.png"
-              className="absolute z-10 w-[25%] bottom-0 left-0 -translate-x-4/5 translate-y-1/2 scale-[1.7] rotate-[-20deg] shadow-xl border border-[#4f1319]"
+              className="
+                absolute
+                z-10
+                w-[18%] 
+                lg:w-[25%]
+                scale-[1.6]
+                lg:scale-[1.7]
+                bottom-0
+                left-0
+                -translate-x-4/5
+                translate-y-1/2
+                rotate-[-20deg]
+                shadow-xl
+                border
+                border-[#4f1319]
+              "
             />
 
-            /*Bottom Right*/
+            {/*Bottom Right*/}
             <img
               src="./scrap4.png"
-              className="absolute z-10 w-[25%] bottom-0 right-0 translate-x-1/2 translate-y-1/2 scale-[2.5] rotate-[-30deg] shadow-xl border border-[#4f1319]"
+              className="
+                absolute
+                z-10
+                w-[18%] 
+                lg:w-[25%]
+                scale-[1.6]
+                lg:scale-[2.5]
+                bottom-0
+                right-0
+                translate-x-1/2
+                translate-y-1/2
+                scale-[2.5]
+                rotate-[-30deg]
+                shadow-xl
+                border
+                border-[#4f1319]
+              "
             />
           </div>
         </div>
