@@ -9,22 +9,35 @@ type Props = {
 
 export default function BackgroundFade({ sectionRef, fadeRef }: Props) {
   useEffect(() => {
-  const handleScroll = () => {
-    if (!sectionRef.current || !fadeRef.current) return;
+    let ticking = false;
 
-    const rect = sectionRef.current.getBoundingClientRect();
-    const triggerPoint = window.innerHeight * 0.6;
+    const update = () => {
+      if (!sectionRef.current || !fadeRef.current) return;
 
-    if (rect.top <= triggerPoint) {
-      fadeRef.current.style.opacity = "0";
-    } else {
-      fadeRef.current.style.opacity = "1";
-    }
-  };
+      const rect = sectionRef.current.getBoundingClientRect();
 
-  window.addEventListener("scroll", handleScroll);
-  return () => window.removeEventListener("scroll", handleScroll);
-}, [sectionRef, fadeRef]);
+      const triggerPoint = window.innerHeight * 0.6;
 
-  return null; // no UI, just behavior
+      fadeRef.current.style.opacity =
+        rect.top <= triggerPoint ? "0" : "1";
+
+      ticking = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(update);
+        ticking = true;
+      }
+    };
+
+    // run once on mount (important for mobile)
+    update();
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [sectionRef, fadeRef]);
+
+  return null;
 }

@@ -1,10 +1,9 @@
 "use client";
+
 import ZoomViewer from "@/src/components/ZoomViewer";
-import BackgroundFade from "@/src/components/BackgroundFade"; 
+import BackgroundFade from "@/src/components/BackgroundFade";
 import localFont from "next/font/local";
 import { useRef } from "react";
-
-
 
 const Gladolia = localFont({
   src: "../src/fonts/GladoliaDEMO-Regular.otf",
@@ -26,41 +25,74 @@ const Heavitas = localFont({
   variable: "--font-myfont",
 });
 
-const card = "w-42 h-24 flex items-center justify-center text-center text-lg text-white font-[Hevitas] p-4 bg-black/80 border border-white/10 rounded-xl hover:scale-105 transition";
+const card = `
+  min-w-[120px]
+  max-w-[140px]
+  min-h-[80px]
+  flex
+  items-center
+  justify-center
+  text-center
+  text-sm
+  sm:text-base
+  lg:text-lg
+  text-white
+  font-[Hevitas]
+  p-3
+  bg-black/80
+  border
+  border-white/10
+  rounded-xl
+  hover:scale-105
+  transition
+`;
 
 export default function Home() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const fadeRef = useRef<HTMLDivElement | null>(null);
+
   return (
-    <div 
-      className="
-        min-h-screen
-      "
-    >
-      {/* Background 2 (fades) */}
-      <div
-        className="fixed inset-0 bg-cover bg-center z-[-1] transition-opacity duration-150"
-        style={{ backgroundImage: "url('./bg_1.svg')" }}
-      />
+    <div className="min-h-screen overflow-x-hidden">
       {/* Background 1 */}
       <div
+        className="fixed inset-0 bg-cover bg-center z-[-2]"
+        style={{ backgroundImage: "url('./bg_1.svg')" }}
+      />
+
+      {/* Background 2 (fades) */}
+      <div
         ref={fadeRef}
-        className="fixed inset-0 bg-cover bg-center z-[-1] transition-opacity duration-150 scale-108"
+        className="
+          fixed
+          inset-0
+          bg-cover
+          bg-center
+          z-[-1]
+          transition-opacity
+          duration-150
+          scale-110
+        "
         style={{ backgroundImage: "url('./bg_2.svg')" }}
       />
+
       <BackgroundFade sectionRef={sectionRef} fadeRef={fadeRef} />
-      <div className="space-y-3 w-[90%] mx-auto mt-20">
+
+      {/* MAIN CONTENT */}
+      <div className="w-[92%] lg:w-[90%] mx-auto mt-20 space-y-10">
+
+        {/* TITLE */}
         <div className="flex justify-center w-full overflow-hidden">
-          <h1 
+          <h1
             className="
               font-[DavidaOpti]
-              text-center 
+              text-center
               text-5xl
               sm:text-7xl
               lg:text-[10rem]
-              text-8xl 
-              text-green-500 
+              text-green-500
               gradient-stroke
+              leading-none
+              whitespace-nowrap
             "
             style={{
               transform: "perspective(200px) rotateX(20deg)",
@@ -70,9 +102,11 @@ export default function Home() {
             The Weirdo Board
           </h1>
         </div>
-        <div 
+
+        {/* ZOOM VIEWER */}
+        <div
           className="
-            overflow-hidden 
+            overflow-hidden
             rounded-3xl
 
             w-[95vw]
@@ -84,91 +118,115 @@ export default function Home() {
             lg:w-[75vw]
             lg:h-[47vw]
 
-            mx-auto 
-            border-8 
+            mx-auto
+            border-4
+            lg:border-8
             border-black
           "
         >
-          <ZoomViewer/>
+          <ZoomViewer />
         </div>
-        <h2 
+
+        {/* HIDDEN ART */}
+        <h2
           className="
-            text-center 
+            text-center
             font-[Hevitas]
-            text-3xl 
+            text-xl
+            sm:text-2xl
+            lg:text-3xl
           "
         >
           Can you find all of the hidden art?
         </h2>
-        <div 
-          className="
-            flex
-            flex-col
-            items-center
-            gap-6
-          "
-        >
-          {/* Row 1: 5 items */}
-          <div className="flex gap-4">
-            <div className={card}>15 Lizards</div>
-            <div className={card}>7 Cats</div>
-            <div className={card}>3 Han-Tyumis</div>
-            <div className={card}>1 Frog</div>
-            <div className={card}>3 Fishies Faces</div>
-          </div>
 
-          {/* Row 2: 4 centered items */}
-          <div className="flex gap-4">
-            <div className={card}>1 Rattlesnake</div>
-            <div className={card}>2 Flowers</div>
-            <div className={card}>1 Pig</div>
-            <div className={card}>4 Mushrooms</div>
-          </div>
+        {/* CARDS */}
+        <div className="flex flex-wrap justify-center gap-3">
+          <div className={card}>15 Lizards</div>
+          <div className={card}>7 Cats</div>
+          <div className={card}>3 Han-Tyumis</div>
+          <div className={card}>1 Frog</div>
+          <div className={card}>3 Fishies Faces</div>
+          <div className={card}>1 Rattlesnake</div>
+          <div className={card}>2 Flowers</div>
+          <div className={card}>1 Pig</div>
+          <div className={card}>4 Mushrooms</div>
         </div>
 
-        <h2 
+        <h2
           className="
-            text-center 
-            text-3xl 
+            text-center
             font-[Hevitas]
+            text-xl
+            sm:text-2xl
+            lg:text-3xl
           "
         >
           And anything else we missed!
         </h2>
-        <h1 
-          className="
-            pt-[20px]
-            font-[Roberta]
-            text-7xl
-            underline
-            decoration-blue-500
-            decoration-2 
-            underline-offset-4
-          "
-        >
-          At Field Of Vision 2025...
-        </h1>
-        <div 
-          ref={sectionRef} 
+
+        {/* FULL WIDTH RIBBON */}
+        <div className="relative w-screen left-1/2 -translate-x-1/2 py-8 my-12">
+
+          {/* Ribbon Background */}
+          <div
+            className="
+              absolute
+              inset-0
+              bg-gradient-to-r
+              from-[#75032b]
+              via-black
+              to-[#1a8c70]
+              shadow-2xl
+              border-y
+              border-white/10
+            "
+          />
+
+          {/* Ribbon Content */}
+          <div className="relative z-10 w-[92%] lg:w-[90%] mx-auto">
+
+            <h1
+              className="
+                font-[Roberta]
+                text-4xl
+                sm:text-5xl
+                lg:text-7xl
+                underline
+                decoration-blue-500
+                decoration-2
+                underline-offset-4
+                text-white
+              "
+            >
+              At Field Of Vision 2025...
+            </h1>
+
+          </div>
+        </div>
+
+        {/* FOUR SQUARE SECTION */}
+        <div
+          ref={sectionRef}
           className="
             grid
             grid-cols-1
             lg:grid-cols-2
-            gap-8
-            lg:gap-30
-            w-[80%]
+            gap-10
+            lg:gap-24
+            w-[95%]
+            lg:w-[80%]
             mx-auto
           "
         >
 
-          {/* top-left image */}
-          <div className="overflow-hidden">
-            <img 
+          {/* TOP LEFT IMAGE */}
+          <div className="overflow-hidden rounded-xl">
+            <img
               src="./signing.png"
               className="
                 w-full
                 h-full
-                mt-15
                 object-cover
                 border-4
                 border-[#4f1319]
@@ -177,88 +235,91 @@ export default function Home() {
             />
           </div>
 
-          {/* top-right text */}
+          {/* TOP RIGHT TEXT */}
           <div className="flex items-center justify-center">
-            <div 
+            <div
               className="
-                z-11
                 inline-block
-                max-w
-                p-10
+                max-w-prose
+                p-5
+                sm:p-8
+                lg:p-10
                 bg-black/80
                 rounded-xl
                 rounded-bl-none
                 rounded-br-3xl
-                text-xl
+                text-base
+                sm:text-xl
                 lg:text-2xl
                 text-center
                 font-[Hevitas]
                 text-white
               "
             >
-              We banded together to tell King Gizzard how much we love them for everything they do for us!
-              The insane amount of quality albums filled with love and soul, the bootleg support for artists across the globe,
-              and the genuine care for their fans at the live shows! They deserve to know that WE LOVE THEM BACK!
+              We banded together to tell King Gizzard how much we love them
+              for everything they do for us! The insane amount of quality
+              albums filled with love and soul, the bootleg support for
+              artists across the globe, and the genuine care for their fans
+              at the live shows! They deserve to know that WE LOVE THEM
+              BACK!
             </div>
           </div>
 
-          {/* bottom-left text */}
-          <div
-            className="
-              flex 
-              items-center
-              justify-center
-            "
-          >
-            <div 
+          {/* BOTTOM LEFT TEXT */}
+          <div className="flex items-center justify-center">
+            <div
               className="
-                z-11
                 inline-block
-                max-w
-                p-10
+                max-w-prose
+                p-5
+                sm:p-8
+                lg:p-10
                 bg-black/80
                 rounded-xl
                 rounded-bl-none
-                rounded-br-2xl
-                text-xl
-                lg:text-3xl
+                rounded-br-3xl
+                text-base
+                sm:text-xl
+                lg:text-2xl
                 text-center
                 font-[Hevitas]
                 text-white
               "
             >
-              Sign your name, write a heartfelt message, tell a joke, a pun, an admission, or make some art! Anything you
-              want to say to them, put it on there, because if the first year of doing this WE GOT IT BACKSTAGE!
+              Sign your name, write a heartfelt message, tell a joke, a pun,
+              an admission, or make some art! Anything you want to say to
+              them, put it on there, because if the first year of doing this
+              WE GOT IT BACKSTAGE!
             </div>
           </div>
 
-          {/* bottom-right polaroid */}
-          <div 
+          {/* BOTTOM RIGHT POLAROID */}
+          <div
             className="
               relative
-              sm:left-10
-              scale-[0.9]
-              lg:scale-100
-              my-37
-              mx-10
               aspect-square
-              w-[60vw]
-              lg:w-full 
+              w-[80vw]
+              sm:w-[60vw]
+              lg:w-full
+              mx-auto
+              scale-90
+              lg:scale-100
             "
           >
+
             {/* MAIN IMAGE */}
-            <div 
+            <div
               className="
                 absolute
                 inset-0
                 overflow-hidden
-                z-5
                 rounded-xl
                 border-4
                 border-[#4f1319]
+                z-10
               "
             >
-              <img 
+              <img
                 src="./polaroid.jpg"
                 className="
                   w-full
@@ -270,85 +331,84 @@ export default function Home() {
               />
             </div>
 
-            {/* SCRAPS */}
-
-            {/*Top Left*/}
+            {/* TOP LEFT */}
             <img
-              src="./scrap1.png" 
+              src="./scrap1.png"
               className="
                 absolute
-                z-10 
-                w-[18%] 
+                z-20
+                w-[18%]
                 lg:w-[25%]
-                scale-[1.1]
-                lg:scale-[1.3]
                 top-0
                 left-0
                 -translate-x-1/2
                 -translate-y-1/2
                 rotate-[-22deg]
+                scale-110
+                lg:scale-[1.3]
                 shadow-xl
                 border
                 border-[#4f1319]
               "
             />
-            {/*Top Right*/}
+
+            {/* TOP RIGHT */}
             <img
               src="./scrap2.png"
               className="
                 absolute
-                z-10
-                w-[18%] 
+                z-20
+                w-[18%]
                 lg:w-[25%]
-                scale-[2]
-                lg:scale-[2]
                 top-0
                 right-0
                 translate-x-1/2
                 -translate-y-1/2
                 rotate-[33deg]
-                shadow-xl
-                border
-                border-[#4f1319]"
-            />
-
-            {/*Bottom Left*/}
-            <img
-              src="./scrap3.png"
-              className="
-                absolute
-                z-10
-                w-[18%] 
-                lg:w-[25%]
-                scale-[1.6]
-                lg:scale-[1.7]
-                bottom-0
-                left-0
-                -translate-x-4/5
-                translate-y-1/2
-                rotate-[-20deg]
+                scale-125
+                lg:scale-[2]
                 shadow-xl
                 border
                 border-[#4f1319]
               "
             />
 
-            {/*Bottom Right*/}
+            {/* BOTTOM LEFT */}
+            <img
+              src="./scrap3.png"
+              className="
+                absolute
+                z-20
+                w-[18%]
+                lg:w-[25%]
+                bottom-0
+                left-0
+                -translate-x-4/5
+                translate-y-1/2
+                rotate-[-20deg]
+                scale-125
+                lg:scale-[1.7]
+                shadow-xl
+                border
+                border-[#4f1319]
+              "
+            />
+
+            {/* BOTTOM RIGHT */}
             <img
               src="./scrap4.png"
               className="
                 absolute
-                z-10
-                w-[18%] 
+                z-20
+                w-[18%]
                 lg:w-[25%]
-                scale-[1.6]
-                lg:scale-[2.5]
                 bottom-0
                 right-0
                 translate-x-1/2
                 translate-y-1/2
-                scale-[2.5]
                 rotate-[-30deg]
+                scale-125
+                lg:scale-[2.5]
                 shadow-xl
                 border
                 border-[#4f1319]
@@ -356,59 +416,109 @@ export default function Home() {
             />
           </div>
         </div>
-        <h1 
-          className="
-            pt-[150px]
-            font-[Roberta]
-            text-7xl
-            underline
-            decoration-blue-500
-            decoration-2 
-            underline-offset-4
-          "
-        >
-          Missed out from last year?
-        </h1>
+
+        {/* FULL WIDTH RIBBON */}
+        <div className="relative w-screen left-1/2 -translate-x-1/2 py-8 my-12">
+
+          {/* Ribbon Background */}
+          <div
+            className="
+              absolute
+              inset-0
+              bg-gradient-to-r
+              from-[#1a8c70]
+              via-black
+              to-[#75032b]
+              shadow-2xl
+              border-y
+              border-white/10
+            "
+          />
+
+          {/* Ribbon Content */}
+          <div className="relative z-10 w-[92%] lg:w-[90%] mx-auto">
+
+            <h1
+              className="
+                font-[Roberta]
+                text-4xl
+                sm:text-5xl
+                lg:text-7xl
+                underline
+                decoration-blue-500
+                decoration-2
+                underline-offset-4
+                text-white
+              "
+            >
+              Missed out from last year?
+            </h1>
+
+          </div>
+        </div>
         <div
           className="
+            p-5
+            sm:p-8
+            lg:p-10
             font-[Hevitas]
             space-y-6
+            text-base
+            sm:text-lg
+            lg:text-xl
             text-white
+            bg-black/80
+            rounded-xl
+            rounded-bl-none
+            rounded-br-2xl
+            max-w-prose
           "
         >
           <p>Well don't worry!</p>
+
           <p>
-            We are making ANOTHER BOARD for Field of Vision 2!
-            (Currently under construction so it doesnt blow away in the wind like last time.)
+            We are making ANOTHER BOARD for Field of Vision 2! (Currently under
+            construction so it doesnt blow away in the wind like last time.)
           </p>
+
           <p>
-            Keep a look out on r/KGATLW for the post about the second board where we will ask YOU
-            guys to make the heading! Finally, with all that said...
+            Keep a look out on r/KGATLW for the post about the second board
+            where we will ask YOU guys to make the heading! Finally, with all
+            that said...
           </p>
         </div>
-        <h1 
-          className="
-            font-[DavidaOpti]
-            text-center 
-            text-[clamp(8rem,10rem)]
-            text-8xl 
-            text-green-500 
-            gradient-stroke
-          "
-          style={{
-            transform: "perspective(300px) rotateX(-20deg)",
-            transformOrigin: "center top",
-          }}
-        >
-          See you next year!
-        </h1>
-        <div className="w-full flex justify-center mt-12">
+
+        {/* END TITLE */}
+        <div className="flex justify-center overflow-hidden">
+          <h1
+            className="
+              font-[DavidaOpti]
+              text-center
+              text-5xl
+              sm:text-7xl
+              lg:text-[8rem]
+              text-green-500
+              gradient-stroke
+              leading-none
+              whitespace-nowrap
+            "
+            style={{
+              transform: "perspective(300px) rotateX(-20deg)",
+              transformOrigin: "center top",
+            }}
+          >
+            See you next year!
+          </h1>
+        </div>
+
+        {/* FINAL IMAGE */}
+        <div className="w-full flex justify-center mt-12 pb-20">
           <img
             src="./fov.png"
-            className="w-64 h-auto"
+            className="w-32 sm:w-48 lg:w-64 h-auto"
           />
         </div>
       </div>
     </div>
-  )
-};
+  );
+}
