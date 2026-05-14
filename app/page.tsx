@@ -39,7 +39,8 @@ const card = `
   text-white
   font-[Hevitas]
   p-3
-  bg-black/80
+  bg-black/55
+  backdrop-blur-sm
   border
   border-white/10
   rounded-xl
@@ -81,14 +82,13 @@ export default function Home() {
       <div className="w-[92%] lg:w-[90%] mx-auto mt-20 space-y-10">
 
         {/* TITLE */}
-        <div className="flex justify-center w-full overflow-hidden">
+        <div className="flex justify-center w-full">
           <h1
             className="
               font-[DavidaOpti]
-              text-center
-              text-5xl
-              sm:text-7xl
-              lg:text-[10rem]
+              text-centr
+              px-20
+              text-[clamp(3rem,11vw,10rem)]
               text-green-500
               gradient-stroke
               leading-none
@@ -127,19 +127,30 @@ export default function Home() {
           <ZoomViewer />
         </div>
 
-        {/* HIDDEN ART */}
-        <h2
-          className="
-            text-center
-            font-[Hevitas]
-            text-xl
-            sm:text-2xl
-            lg:text-3xl
-          "
-        >
-          Can you find all of the hidden art?
-        </h2>
-
+        <div className="flex justify-center">
+          {/* HIDDEN ART */}
+          <h2
+            className="
+              inline-block
+              py-3
+              px-20
+              rounded-xl
+              bg-black/55
+              backdrop-blur-sm
+              border
+              border-white/10
+              shadow-2xl
+              text-center
+              font-[Hevitas]
+              text-xl
+              sm:text-2xl
+              lg:text-3xl
+              text-white
+            "
+          >
+            Can you find all of the hidden art?
+          </h2>
+        </div>
         {/* CARDS */}
         <div className="flex flex-wrap justify-center gap-3">
           <div className={card}>15 Lizards</div>
@@ -152,19 +163,30 @@ export default function Home() {
           <div className={card}>1 Pig</div>
           <div className={card}>4 Mushrooms</div>
         </div>
+        <div className="flex justify-center">
+          <h2
+            className="
+              inline-block
+              py-3
+              px-20
+              rounded-xl
+              bg-black/55
+              backdrop-blur-sm
+              border
+              border-white/10
+              shadow-2xl
 
-        <h2
-          className="
-            text-center
-            font-[Hevitas]
-            text-xl
-            sm:text-2xl
-            lg:text-3xl
-          "
-        >
-          And anything else we missed!
-        </h2>
-
+              text-center
+              font-[Hevitas]
+              text-xl
+              sm:text-2xl
+              lg:text-3xl
+              text-white
+            "
+          >
+            And anything else we missed!
+          </h2>
+        </div>
         {/* FULL WIDTH RIBBON */}
         <div className="relative w-screen left-1/2 -translate-x-1/2 py-8 my-12">
 
@@ -212,7 +234,7 @@ export default function Home() {
             grid
             grid-cols-1
             lg:grid-cols-2
-            gap-10
+            gap-20
             lg:gap-24
             w-[95%]
             lg:w-[80%]
@@ -337,8 +359,7 @@ export default function Home() {
               className="
                 absolute
                 z-20
-                w-[18%]
-                lg:w-[25%]
+                w-[25%]
                 top-0
                 left-0
                 -translate-x-1/2
@@ -358,8 +379,7 @@ export default function Home() {
               className="
                 absolute
                 z-20
-                w-[18%]
-                lg:w-[25%]
+                w-[25%]
                 top-0
                 right-0
                 translate-x-1/2
@@ -379,8 +399,7 @@ export default function Home() {
               className="
                 absolute
                 z-20
-                w-[18%]
-                lg:w-[25%]
+                w-[25%]
                 bottom-0
                 left-0
                 -translate-x-4/5
@@ -400,8 +419,7 @@ export default function Home() {
               className="
                 absolute
                 z-20
-                w-[18%]
-                lg:w-[25%]
+                w-[25%]
                 bottom-0
                 right-0
                 translate-x-1/2
@@ -418,7 +436,7 @@ export default function Home() {
         </div>
 
         {/* FULL WIDTH RIBBON */}
-        <div className="relative w-screen left-1/2 -translate-x-1/2 py-8 my-12">
+        <div className="relative w-screen left-1/2 -translate-x-1/2 py-8 my-22 lg:my-40">
 
           {/* Ribbon Background */}
           <div
@@ -489,14 +507,12 @@ export default function Home() {
         </div>
 
         {/* END TITLE */}
-        <div className="flex justify-center overflow-hidden">
+        <div className="flex justify-center">
           <h1
             className="
               font-[DavidaOpti]
               text-center
-              text-5xl
-              sm:text-7xl
-              lg:text-[8rem]
+              text-[clamp(3rem,10vw,10rem)]
               text-green-500
               gradient-stroke
               leading-none
