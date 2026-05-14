@@ -87,8 +87,7 @@ export default function Home() {
             className="
               font-[DavidaOpti]
               text-centr
-              px-20
-              text-[clamp(3rem,11vw,10rem)]
+              text-[clamp(3rem,10vw,10rem)]
               text-green-500
               gradient-stroke
               leading-none
@@ -436,7 +435,7 @@ export default function Home() {
         </div>
 
         {/* FULL WIDTH RIBBON */}
-        <div className="relative w-screen left-1/2 -translate-x-1/2 py-8 my-22 lg:my-40">
+        <div className="relative w-screen left-1/2 -translate-x-1/2 py-8 mt-22 lg:mt-40">
 
           {/* Ribbon Background */}
           <div
@@ -471,7 +470,6 @@ export default function Home() {
             >
               Missed out from last year?
             </h1>
-
           </div>
         </div>
         <div
@@ -512,7 +510,7 @@ export default function Home() {
             className="
               font-[DavidaOpti]
               text-center
-              text-[clamp(3rem,10vw,10rem)]
+              text-[clamp(3rem,9vw,10rem)]
               text-green-500
               gradient-stroke
               leading-none
