@@ -9,16 +9,16 @@ const members = [
       Gizzboard idea. He is majoring in art and with a crippling addiction to 
       KGLW and with that came up with the original ideas.
     `,
-    imagePosition: "object-[0%_65%]",
+    imagePosition: "object-[50%_90%]",
   },
   {
     name: "Kyle",
     image: "/kyle.png",
     bio: `
       Hey! I'm your friendly neighborhood IT guy and the originator of the 
-      KGLW obsession in our friend group. I was responsible for helping Riley 
+      KGLW obsession in our friend group. I was helped Riley 
       with the construction, transport, and management of the first board at FOV 2025.
-      I had the idea to digitally preserve these creations and a CS degree 
+      About to give it away we had the idea to digitally preserve the board and a CS degree 
       that was screaming to be used so I programmed this site! 
       (with design decisions being made by Riley because I'm colorblind).
       Hope you enjoy!
@@ -85,7 +85,7 @@ export default function AboutPage() {
                   shadow-2xl
                   w-full
                   max-w-md
-                  aspect-square
+                  aspect-2/3
                 "
               >
                 <img
