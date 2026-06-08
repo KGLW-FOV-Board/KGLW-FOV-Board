@@ -50,12 +50,16 @@ const card = `
 
 export default function Home() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
+  const section2Ref = useRef<HTMLDivElement | null>(null);
   const fadeRef = useRef<HTMLDivElement | null>(null);
 
   return (
     <div className="min-h-screen overflow-x-hidden">
       
-      <BackgroundManager sectionRef={sectionRef} />
+      <BackgroundManager
+        section1Ref={sectionRef}
+        section2Ref={section2Ref}
+      />
       {/* MAIN CONTENT min-h-screen overflow-x-hidden */}
       <div className="w-[92%] lg:w-[90%] mx-auto mt-20 space-y-10">
 
@@ -431,7 +435,14 @@ export default function Home() {
           />
 
           {/* Ribbon Content */}
-          <div className="relative z-10 w-[92%] lg:w-[90%] mx-auto">
+          <div 
+            className="
+              relative 
+              z-10 w-[92%]
+              lg:w-[90%]
+              mx-auto
+            "
+          >
 
             <h1
               className="
@@ -467,6 +478,7 @@ export default function Home() {
             rounded-br-2xl
             max-w-prose
           "
+          ref={section2Ref} 
         >
           <p>Well don't worry!</p>
 

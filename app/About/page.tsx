@@ -20,11 +20,11 @@ const members = [
     image: "/kyle.png",
     bio: `
       Hey! I'm your friendly neighborhood IT guy and the originator of the 
-      KGLW obsession in our friend group. I was helped Riley 
-      with the construction, transport, and management of the first board at FOV 2025.
-      We were about to give it away and we had the idea to digitally preserve the board.
-      I had a CS degree that was screaming to be used so I programmed this site!
-      (with design decisions being made by Riley because I'm colorblind).
+      KGLW obsession in our friend group. I helped Riley 
+      with the construction, transport, and management of the first board at FOV 2025
+      and boy was it a great experience.We were about to give it away and had the idea 
+      to digitally preserve the board; I had a CS degree that was screaming to be used 
+      so I programmed this site! (with design decisions being made by Riley because I'm colorblind).
       Hope you enjoy!
     `,
     imagePosition: "object-[0%_37%]",
