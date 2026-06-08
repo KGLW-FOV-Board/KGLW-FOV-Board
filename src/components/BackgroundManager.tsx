@@ -94,6 +94,7 @@ export default function BackgroundManager({
           object-cover
           transition-opacity
           duration-700
+          scale-110
           will-change-opacity
           ${currentBg === 2 ? "opacity-100" : "opacity-0"}
         `}

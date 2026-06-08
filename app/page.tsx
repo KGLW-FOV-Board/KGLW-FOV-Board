@@ -463,47 +463,82 @@ export default function Home() {
         </div>
         <div
           className="
-            p-5
-            sm:p-8
-            lg:p-10
-            font-[Hevitas]
-            space-y-6
-            text-base
-            sm:text-lg
-            lg:text-xl
-            text-white
-            bg-black/80
-            rounded-xl
-            rounded-bl-none
-            rounded-br-2xl
-            max-w-prose
+            flex
+            flex-col
+            lg:flex-row
+            items-center
+            gap-8
           "
-          ref={section2Ref} 
         >
-          <p>Well don't worry!</p>
+          <div
+            className="
+              p-5
+              sm:p-8
+              lg:p-10
+              font-[Hevitas]
+              space-y-6
+              text-base
+              sm:text-lg
+              lg:text-xl
+              text-white
+              bg-black/80
+              rounded-xl
+              rounded-bl-none
+              rounded-br-2xl
+              max-w-prose
+            "
+            ref={section2Ref} 
+          >
+            <p>Well don't worry!</p>
 
-          <p>
-            We are making ANOTHER BOARD for Field of Vision 2! (Currently under
-            construction so it doesnt blow away in the wind like last time.)
-          </p>
+            <p>
+              We are making ANOTHER BOARD for Field of Vision 2! (Currently under
+              construction so it doesnt blow away in the wind like last time.)
+            </p>
 
-          <p>
-            Keep a look out on r/KGATLW for the post about the second board
-            where we will ask YOU guys to make the heading! Finally, with all
-            that said...
-          </p>
+            <p>
+              Keep a look out on r/KGATLW for the post about the second board
+              where we will ask YOU guys to make the heading! Finally, with all
+              that said...
+            </p>
+          </div>
+          {/* IMAGE */}
+          <div
+            className="
+              w-[70%]
+              lg:w-[45%]
+              lg:min-w-[45%]
+              flex
+              justify-center
+              m-10
+            "
+          >
+            <img
+              src="/new_board.JPG"
+              className="
+                w-full
+                scale-130
+                max-w-[400px]
+                rounded-xl
+                border-4
+                border-[#4f1319]
+                object-cover
+              "
+            />
+          </div>
         </div>
 
         {/* END TITLE */}
-        <div className="flex justify-center">
+        <div className="flex justify-center px-4 sm:px-8 overflow-visible">
           <h1
             className="
               font-[DavidaOpti]
               text-center
-              text-[clamp(3rem,9vw,10rem)]
+              text-[clamp(2.5rem,9vw,10rem)]
               text-green-500
               gradient-stroke
               leading-none
+              max-w-full
               whitespace-nowrap
             "
             style={{
