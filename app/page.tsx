@@ -1,7 +1,7 @@
 "use client";
 
 import ZoomViewer from "@/src/components/ZoomViewer";
-import BackgroundFade from "@/src/components/BackgroundFade";
+import BackgroundManager from "@/src/components/BackgroundManager";
 import localFont from "next/font/local";
 import { useRef } from "react";
 
@@ -16,7 +16,7 @@ const DavidaOpti = localFont({
 });
 
 const Roberta = localFont({
-  src: "../src/fonts/Roberta Regular.ttf",
+  src: "../src/fonts/RobertaC Regular.ttf",
   variable: "--font-myfont",
 });
 
@@ -54,31 +54,9 @@ export default function Home() {
 
   return (
     <div className="min-h-screen overflow-x-hidden">
-      {/* Background 1 */}
-      <div
-        className="fixed inset-0 bg-cover bg-center z-[-2]"
-        style={{ backgroundImage: "url('./bg_1.svg')" }}
-      />
-
-      {/* Background 2 (fades) */}
-      <div
-        ref={fadeRef}
-        className="
-          fixed
-          inset-0
-          bg-cover
-          bg-center
-          z-[-1]
-          transition-opacity
-          duration-150
-          scale-110
-        "
-        style={{ backgroundImage: "url('./bg_2.svg')" }}
-      />
-
-      <BackgroundFade sectionRef={sectionRef} fadeRef={fadeRef} />
-
-      {/* MAIN CONTENT */}
+      
+      <BackgroundManager sectionRef={sectionRef} />
+      {/* MAIN CONTENT min-h-screen overflow-x-hidden */}
       <div className="w-[92%] lg:w-[90%] mx-auto mt-20 space-y-10">
 
         {/* TITLE */}

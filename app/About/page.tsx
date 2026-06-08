@@ -5,9 +5,13 @@ const members = [
     name: "Riley",
     image: "/riley.jpg",
     bio: `
-      The man, the myth, the legend! Riley is responsible for this whole
-      Gizzboard idea. He is majoring in art and with a crippling addiction to 
-      KGLW and with that came up with the original ideas.
+      HELLO! I am the man behind this crazy project! I have loved Gizzard ever since
+      I heard about them back in 2021 and I have developed a slight addiction to their music.
+      Once I heard about Field of Vision, I had to figure out a way to let the band know 
+      how much they mean to me, and now this obtuse thing exists! Right now I’m in college 
+      for a visual arts degree and plan to become an animator or concept designer in the 
+      future with some other projects like this one! I also have Type 1 diabetes, so if you 
+      see me next year eating smarties, you’ll know it's me.
     `,
     imagePosition: "object-[50%_90%]",
   },
@@ -18,8 +22,8 @@ const members = [
       Hey! I'm your friendly neighborhood IT guy and the originator of the 
       KGLW obsession in our friend group. I was helped Riley 
       with the construction, transport, and management of the first board at FOV 2025.
-      About to give it away we had the idea to digitally preserve the board and a CS degree 
-      that was screaming to be used so I programmed this site! 
+      We were about to give it away and we had the idea to digitally preserve the board.
+      I had a CS degree that was screaming to be used so I programmed this site!
       (with design decisions being made by Riley because I'm colorblind).
       Hope you enjoy!
     `,
