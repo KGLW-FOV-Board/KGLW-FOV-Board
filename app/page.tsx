@@ -64,16 +64,17 @@ export default function Home() {
       <div className="w-[92%] lg:w-[90%] mx-auto mt-20 space-y-10">
 
         {/* TITLE */}
-        <div className="flex justify-center w-full">
+        <div className="w-full flex justify-center px-4 sm:px-8 overflow-visible">
           <h1
             className="
               font-[DavidaOpti]
-              text-centr
-              text-[clamp(3rem,10vw,10rem)]
+              inline-block
+              text-center
+              text-[clamp(2.2rem,9vw,10rem)]
               text-green-500
               gradient-stroke
               leading-none
-              whitespace-nowrap
+              max-w-full
             "
             style={{
               transform: "perspective(200px) rotateX(20deg)",
@@ -529,25 +530,26 @@ export default function Home() {
         </div>
 
         {/* END TITLE */}
-        <div className="flex justify-center px-4 sm:px-8 overflow-visible">
-          <h1
-            className="
-              font-[DavidaOpti]
-              text-center
-              text-[clamp(2.5rem,9vw,10rem)]
-              text-green-500
-              gradient-stroke
-              leading-none
-              max-w-full
-              whitespace-nowrap
-            "
-            style={{
-              transform: "perspective(300px) rotateX(-20deg)",
-              transformOrigin: "center top",
-            }}
-          >
-            See you next year!
-          </h1>
+        <div className="w-full flex justify-center px-4 sm:px-8 overflow-visible">
+          <div className="max-w-full">
+            <h1
+              className="
+                font-[DavidaOpti]
+                inline-block
+                text-center
+                text-[clamp(2.5rem,9vw,10rem)]
+                text-green-500
+                gradient-stroke
+                leading-none
+              "
+              style={{
+                transform: "perspective(300px) rotateX(-20deg)",
+                transformOrigin: "center top",
+              }}
+            >
+              See you next year!
+            </h1>
+          </div>
         </div>
 
         {/* FINAL IMAGE */}
