@@ -3,16 +3,23 @@
 import { useEffect, useRef } from "react";
 
 export default function ZoomViewer() {
+
   const ref = useRef<HTMLDivElement | null>(null);
 
+  // STORE VIEWER GLOBALLY INSIDE COMPONENT
+  const viewerRef = useRef<any>(null);
+
   useEffect(() => {
+
     const el = ref.current;
     if (!el) return;
 
     let viewer: any;
 
     (async () => {
-      const OpenSeadragon = (await import("openseadragon")).default;
+
+      const OpenSeadragon =
+        (await import("openseadragon")).default;
 
       viewer = OpenSeadragon({
         element: el,
@@ -23,11 +30,79 @@ export default function ZoomViewer() {
         maxZoomPixelRatio: 10,
       });
 
-      // Button Theme
+      // SAVE VIEWER
+      viewerRef.current = viewer;
+
+      // =====================================================
+      // GLOBAL DEBUG HELPERS
+      // =====================================================
+
+      // LOG CURRENT VIEW
+      (window as any).logView = () => {
+
+        if (!viewerRef.current) return;
+
+        const center =
+          viewerRef.current.viewport.getCenter();
+
+        const zoom =
+          viewerRef.current.viewport.getZoom();
+
+        console.log({
+          x: Number(center.x.toFixed(4)),
+          y: Number(center.y.toFixed(4)),
+          zoom: Number(zoom.toFixed(2)),
+        });
+      };
+
+      // COPY CURRENT VIEW TO CLIPBOARD
+      (window as any).copyView = async () => {
+
+        if (!viewerRef.current) return;
+
+        const center =
+          viewerRef.current.viewport.getCenter();
+
+        const zoom =
+          viewerRef.current.viewport.getZoom();
+
+        const output =
+          `{ x: ${center.x.toFixed(4)}, y: ${center.y.toFixed(4)}, zoom: ${zoom.toFixed(2)} }`;
+
+        console.log(output);
+
+        try {
+          await navigator.clipboard.writeText(output);
+          console.log("Copied to clipboard");
+        } catch {
+          console.log("Clipboard copy failed");
+        }
+      };
+
+      // CLICK TO LOG POSITION
+      viewer.addHandler("canvas-click", (event: any) => {
+
+        const point =
+          viewer.viewport.pointFromPixel(event.position);
+
+        console.log({
+          x: Number(point.x.toFixed(4)),
+          y: Number(point.y.toFixed(4)),
+        });
+      });
+
+      // =====================================================
+      // BUTTON THEME
+      // =====================================================
+
       viewer.element.classList.add("gizz-osd-theme");
 
-      // ✅ ROTATE CLOCKWISE BUTTON
+      // =====================================================
+      // ROTATE CLOCKWISE
+      // =====================================================
+
       viewer.addHandler("open", () => {
+
         const btn = document.createElement("button");
 
         btn.innerHTML = "⟳";
@@ -36,19 +111,24 @@ export default function ZoomViewer() {
         btn.className = "openseadragon-button";
 
         btn.onclick = () => {
-          const current = viewer.viewport.getRotation();
+
+          const current =
+            viewer.viewport.getRotation();
+
           viewer.viewport.setRotation(current + 90);
         };
 
         viewer.addControl(btn, {
           anchor: OpenSeadragon.ControlAnchor.TOP_RIGHT,
         });
-
-        viewer.element.classList.add("gizz-osd-theme")
       });
-    
-      // ✅ ROTATE CLOCKWISE BUTTON
+
+      // =====================================================
+      // ROTATE COUNTERCLOCKWISE
+      // =====================================================
+
       viewer.addHandler("open", () => {
+
         const btn = document.createElement("button");
 
         btn.innerHTML = "⟲";
@@ -57,21 +137,24 @@ export default function ZoomViewer() {
         btn.className = "openseadragon-button";
 
         btn.onclick = () => {
-          const current = viewer.viewport.getRotation();
+
+          const current =
+            viewer.viewport.getRotation();
+
           viewer.viewport.setRotation(current - 90);
         };
 
         viewer.addControl(btn, {
           anchor: OpenSeadragon.ControlAnchor.TOP_RIGHT,
         });
-
-        viewer.element.classList.add("gizz-osd-theme")
       });
+
     })();
 
     return () => {
       if (viewer) viewer.destroy();
     };
+
   }, []);
 
   return (
