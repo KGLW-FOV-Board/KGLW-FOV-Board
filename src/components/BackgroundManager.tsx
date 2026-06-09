@@ -69,7 +69,7 @@ export default function BackgroundManager({
 
       {/* BG 1 */}
       <img
-        src="/bg_1.svg"
+        src="/bg_1.webp"
         className={`
           absolute
           inset-0
@@ -85,7 +85,7 @@ export default function BackgroundManager({
 
       {/* BG 2 */}
       <img
-        src="/bg_2.svg"
+        src="/bg_2.webp"
         className={`
           absolute
           inset-0
@@ -102,7 +102,7 @@ export default function BackgroundManager({
 
       {/* BG 3 */}
       <img
-        src="/bg_3.svg"
+        src="/bg_3.webp"
         className={`
           absolute
           inset-0
