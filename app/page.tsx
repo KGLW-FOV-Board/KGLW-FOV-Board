@@ -289,9 +289,9 @@ export default function Home() {
                 text-white
               "
             >
-              Sign your name, write a heartfelt message, tell a joke, a pun,
-              an admission, or make some art! Anything you want to say to
-              them, put it on there, because if the first year of doing this
+              We signed our names, wrote heartfelt messages, told jokes, puns,
+              and admissions, and made lots of art! Everything we wanted to say to
+              them, we put it on there, and in the first year of doing this
               WE GOT IT BACKSTAGE!
             </div>
           </div>
