@@ -6,8 +6,10 @@ export default function ZoomViewer() {
 
   const ref = useRef<HTMLDivElement | null>(null);
 
-  // STORE VIEWER GLOBALLY INSIDE COMPONENT
+  // VIEWER REFERENCES
   const viewerRef = useRef<any>(null);
+  const osdRef = useRef<any>(null);
+  const homeZoomRef = useRef<number>(1);
 
   useEffect(() => {
 
@@ -21,17 +23,30 @@ export default function ZoomViewer() {
       const OpenSeadragon =
         (await import("openseadragon")).default;
 
+      osdRef.current = OpenSeadragon;
+
       viewer = OpenSeadragon({
         element: el,
+
         prefixUrl:
           "https://openseadragon.github.io/openseadragon/images/",
+
         tileSources: "./2025_board.dzi",
+
         showNavigator: false,
         maxZoomPixelRatio: 10,
+
+        // SMOOTH CAMERA SETTINGS
+        animationTime: 2.2,
+        springStiffness: 3.5,
+
+        gestureSettingsTouch: {
+          pinchRotate: true,
+        },
       });
 
-      // SAVE VIEWER
       viewerRef.current = viewer;
+      (window as any).viewerRef = viewerRef;
 
       // =====================================================
       // GLOBAL DEBUG HELPERS
@@ -55,47 +70,126 @@ export default function ZoomViewer() {
         });
       };
 
-      // COPY CURRENT VIEW TO CLIPBOARD
-      (window as any).copyView = async () => {
+      // =====================================================
+      // CINEMATIC ZOOM FUNCTION
+      // =====================================================
 
-        if (!viewerRef.current) return;
+      (window as any).zoomToLocation = async (
+        x: number,
+        y: number,
+        zoom: number
+      ) => {
 
-        const center =
-          viewerRef.current.viewport.getCenter();
+        if (!viewerRef.current || !osdRef.current) return;
 
-        const zoom =
-          viewerRef.current.viewport.getZoom();
+        const viewer = viewerRef.current;
+        const viewport = viewer.viewport;
+        const OpenSeadragon = osdRef.current;
 
-        const output =
-          `{ x: ${center.x.toFixed(4)}, y: ${center.y.toFixed(4)}, zoom: ${zoom.toFixed(2)} }`;
+        // CURRENT STATE
+        const currentCenter =
+          viewport.getCenter();
 
-        console.log(output);
+        const currentZoom =
+          viewport.getZoom();
 
-        try {
-          await navigator.clipboard.writeText(output);
-          console.log("Copied to clipboard");
-        } catch {
-          console.log("Clipboard copy failed");
-        }
+        // DISTANCE TO TARGET
+        const dx = currentCenter.x - x;
+        const dy = currentCenter.y - y;
+
+        const distance =
+          Math.sqrt(dx * dx + dy * dy);
+
+        // FARTHER MOVES = MORE ZOOM OUT
+        const zoomOutFactor =
+          3 + Math.min(distance * 1.2, 1);
+
+        const rawZoomedOutLevel =
+          currentZoom / zoomOutFactor;
+
+        // NEVER ZOOM OUT FARTHER
+        // THAN THE HOME VIEW
+        const zoomedOutLevel =
+          Math.max(
+            rawZoomedOutLevel,
+            homeZoomRef.current
+          );
+
+        // =====================================================
+        // STEP 1:
+        // ZOOM OUT IN PLACE
+        // =====================================================
+
+        viewport.zoomTo(
+          zoomedOutLevel,
+          undefined,
+          false
+        );
+
+        // WAIT FOR ZOOM OUT
+        await new Promise((resolve) =>
+          setTimeout(resolve, 700)
+        );
+
+        // =====================================================
+        // STEP 2:
+        // PAN ACROSS POSTER
+        // =====================================================
+
+        viewport.panTo(
+          new OpenSeadragon.Point(x, y),
+          false
+        );
+
+        // WAIT FOR PAN
+        await new Promise((resolve) =>
+          setTimeout(resolve, 900)
+        );
+
+        // =====================================================
+        // STEP 3:
+        // ZOOM BACK INTO TARGET
+        // =====================================================
+
+        viewport.zoomTo(
+          zoom,
+          undefined,
+          false
+        );
       };
 
-      // CLICK TO LOG POSITION
-      viewer.addHandler("canvas-click", (event: any) => {
-
-        const point =
-          viewer.viewport.pointFromPixel(event.position);
-
-        console.log({
-          x: Number(point.x.toFixed(4)),
-          y: Number(point.y.toFixed(4)),
-        });
+      viewer.addHandler("open", () => {
+        homeZoomRef.current =
+          viewer.viewport.getHomeZoom();
       });
+
+      // =====================================================
+      // CLICK TO LOG IMAGE COORDINATES
+      // =====================================================
+
+      viewer.addHandler(
+        "canvas-click",
+        (event: any) => {
+
+          const point =
+            viewer.viewport.pointFromPixel(
+              event.position
+            );
+
+          console.log({
+            x: Number(point.x.toFixed(4)),
+            y: Number(point.y.toFixed(4)),
+          });
+        }
+      );
 
       // =====================================================
       // BUTTON THEME
       // =====================================================
 
-      viewer.element.classList.add("gizz-osd-theme");
+      viewer.element.classList.add(
+        "gizz-osd-theme"
+      );
 
       // =====================================================
       // ROTATE CLOCKWISE
@@ -108,18 +202,22 @@ export default function ZoomViewer() {
         btn.innerHTML = "⟳";
         btn.title = "Rotate Clockwise 90°";
         btn.style.cursor = "pointer";
-        btn.className = "openseadragon-button";
+        btn.className =
+          "openseadragon-button";
 
         btn.onclick = () => {
 
           const current =
             viewer.viewport.getRotation();
 
-          viewer.viewport.setRotation(current + 90);
+          viewer.viewport.setRotation(
+            current + 90
+          );
         };
 
         viewer.addControl(btn, {
-          anchor: OpenSeadragon.ControlAnchor.TOP_RIGHT,
+          anchor:
+            OpenSeadragon.ControlAnchor.TOP_RIGHT,
         });
       });
 
@@ -132,20 +230,27 @@ export default function ZoomViewer() {
         const btn = document.createElement("button");
 
         btn.innerHTML = "⟲";
-        btn.title = "Rotate Counter-clockwise 90°";
+        btn.title =
+          "Rotate Counter-clockwise 90°";
+
         btn.style.cursor = "pointer";
-        btn.className = "openseadragon-button";
+
+        btn.className =
+          "openseadragon-button";
 
         btn.onclick = () => {
 
           const current =
             viewer.viewport.getRotation();
 
-          viewer.viewport.setRotation(current - 90);
+          viewer.viewport.setRotation(
+            current - 90
+          );
         };
 
         viewer.addControl(btn, {
-          anchor: OpenSeadragon.ControlAnchor.TOP_RIGHT,
+          anchor:
+            OpenSeadragon.ControlAnchor.TOP_RIGHT,
         });
       });
 

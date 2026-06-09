@@ -3,7 +3,8 @@
 import ZoomViewer from "@/src/components/ZoomViewer";
 import BackgroundManager from "@/src/components/BackgroundManager";
 import localFont from "next/font/local";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { hiddenArt } from "@/src/data/hiddenArt";
 
 const Gladolia = localFont({
   src: "../src/fonts/GladoliaDEMO-Regular.otf",
@@ -52,6 +53,66 @@ export default function Home() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const section2Ref = useRef<HTMLDivElement | null>(null);
   const fadeRef = useRef<HTMLDivElement | null>(null);
+  const [artIndexes, setArtIndexes] = useState<
+  Record<string, number>
+  >({});
+  const zoomToArt = (
+  key: keyof typeof hiddenArt
+  ) => {
+
+    const targets = hiddenArt[key];
+    if (targets.length === 1) {
+
+      const target = targets[0];
+
+      const viewer =
+        (window as any).viewerRef?.current;
+
+      if (viewer) {
+
+        const center =
+          viewer.viewport.getCenter();
+
+        const currentZoom =
+          viewer.viewport.getZoom();
+
+        const threshold = 0.0005;
+        const zoomThreshold = 0.15;
+
+        const samePosition =
+          Math.abs(center.x - target.x) < threshold &&
+          Math.abs(center.y - target.y) < threshold;
+
+        const sameZoom =
+          Math.abs(currentZoom - target.zoom)
+          < zoomThreshold;
+
+        if (samePosition && sameZoom) {
+          return;
+        }
+      }
+    }
+    if (!targets.length) return;
+
+    const currentIndex =
+      artIndexes[key] ?? 0;
+
+    const target =
+      targets[currentIndex];
+
+    (window as any).zoomToLocation(
+      target.x,
+      target.y,
+      target.zoom
+    );
+
+    setArtIndexes((prev) => ({
+      ...prev,
+      [key]:
+        (currentIndex + 1) %
+        targets.length,
+    }));
+  };
 
   return (
     <div className="min-h-screen overflow-x-hidden">
@@ -135,15 +196,60 @@ export default function Home() {
         </div>
         {/* CARDS */}
         <div className="flex flex-wrap justify-center gap-3">
-          <div className={card}>15 Lizards</div>
-          <div className={card}>7 Cats</div>
-          <div className={card}>3 Han-Tyumis</div>
-          <div className={card}>1 Frog</div>
-          <div className={card}>3 Fishies Faces</div>
-          <div className={card}>1 Rattlesnake</div>
-          <div className={card}>2 Flowers</div>
-          <div className={card}>1 Pig</div>
-          <div className={card}>4 Mushrooms</div>
+          <div
+            className={`${card} cursor-pointer`}
+            onClick={() => zoomToArt("lizards")}
+          >
+            15 Lizards
+          </div>
+          <div
+            className={`${card} cursor-pointer`}
+            onClick={() => zoomToArt("cats")}
+          >
+            9 Cats
+          </div>
+          <div
+            className={`${card} cursor-pointer`}
+            onClick={() => zoomToArt("hanTyumis")}
+          >
+            3 Han-Tyumis
+          </div>
+          <div
+            className={`${card} cursor-pointer`}
+            onClick={() => zoomToArt("frog")}
+          >
+            1 Frog
+          </div>
+          <div
+            className={`${card} cursor-pointer`}
+            onClick={() => zoomToArt("fishies")}
+          >
+            5 Fishies Faces
+          </div>
+          <div
+            className={`${card} cursor-pointer`}
+            onClick={() => zoomToArt("rattlesnakes")}
+          >
+            2 Rattlesnakes
+          </div>
+          <div
+            className={`${card} cursor-pointer`}
+            onClick={() => zoomToArt("flowers")}
+          >
+            5 Flowers
+          </div>
+          <div
+            className={`${card} cursor-pointer`}
+            onClick={() => zoomToArt("pigs")}
+          >
+            2 Pigs
+          </div>
+          <div
+            className={`${card} cursor-pointer`}
+            onClick={() => zoomToArt("mushrooms")}
+          >
+            4 Mushrooms
+          </div>
         </div>
         <div className="flex justify-center">
           <h2
