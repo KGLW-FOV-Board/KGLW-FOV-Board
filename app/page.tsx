@@ -531,25 +531,25 @@ export default function Home() {
 
         {/* END TITLE */}
         <div className="w-full flex justify-center px-4 sm:px-8 overflow-visible">
-          <div className="max-w-full">
-            <h1
-              className="
-                font-[DavidaOpti]
-                inline-block
-                text-center
-                text-[clamp(2.5rem,9vw,10rem)]
-                text-green-500
-                gradient-stroke
-                leading-none
-              "
-              style={{
-                transform: "perspective(300px) rotateX(-20deg)",
-                transformOrigin: "center top",
-              }}
-            >
-              See you next year!
-            </h1>
-          </div>
+          <h1
+            className="
+              font-[DavidaOpti]
+              inline-block
+              text-center
+              text-[clamp(1.8rem,8vw,10rem)]
+              text-green-500
+              gradient-stroke
+              leading-none
+              whitespace-nowrap
+              max-w-[100vw]
+            "
+            style={{
+              transform: "perspective(300px) rotateX(-20deg)",
+              transformOrigin: "center top",
+            }}
+          >
+            See you next year!
+          </h1>
         </div>
 
         {/* FINAL IMAGE */}
