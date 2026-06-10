@@ -200,7 +200,7 @@ export default function Home() {
             className={`${card} cursor-pointer`}
             onClick={() => zoomToArt("lizards")}
           >
-            15 Lizards
+            17 Lizards
           </div>
           <div
             className={`${card} cursor-pointer`}
