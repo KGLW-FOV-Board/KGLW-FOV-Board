@@ -12,6 +12,7 @@
     "deploy": "next build && next export"
   },
   "dependencies": {
+    "@next/third-parties": "^16.2.9",
     "dzi": "^0.0.5",
     "next": "16.2.3",
     "openseadragon": "^6.0.2",
