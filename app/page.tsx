@@ -53,6 +53,58 @@ const card = `
 export default function Home() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const section2Ref = useRef<HTMLDivElement | null>(null);
+  const engagementScore = useRef(0);
+  const engagementTracked = useRef(false);
+  const increaseEngagement = (
+    amount: number
+  ) => {
+
+    if (engagementTracked.current)
+      return;
+
+    engagementScore.current += amount;
+
+    // THRESHOLD
+    if (
+      engagementScore.current >= 100
+    ) {
+
+      engagementTracked.current = true;
+
+      trackEvent(
+        "engaged_session",
+        {
+          score:
+            engagementScore.current,
+        }
+      );
+
+      console.log(
+        "Engaged session tracked"
+      );
+    }
+  };
+
+  useEffect(() => {
+
+    (window as any).increaseEngagement =
+      increaseEngagement;
+
+  }, []);
+
+  // Track engaement based on time on site
+  useEffect(() => {
+
+    const timer = setTimeout(() => {
+
+      increaseEngagement(40);
+
+    }, 30000);
+
+    return () =>
+      clearTimeout(timer);
+
+  }, []);
 
   // Track Scroll amount in google analytics
   useEffect(() => {
@@ -85,6 +137,7 @@ export default function Home() {
             percent,
           }
         );
+        increaseEngagement(15);
       }
     };
 
@@ -151,6 +204,7 @@ export default function Home() {
       art_name: key,
       target_index: currentIndex,
     });
+    increaseEngagement(30);
 
     (window as any).zoomToLocation(
       target.x,

@@ -169,6 +169,7 @@ export default function ZoomViewer() {
             zoom.toFixed(2)
           ),
         });
+        (window as any).increaseEngagement?.(10);
       });
 
       viewer.addHandler("open", () => {
