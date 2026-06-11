@@ -47,6 +47,8 @@ const card = `
   border-white/10
   rounded-xl
   hover:scale-105
+  active:scale-105
+  active:duration-75
   transition
 `;
 
