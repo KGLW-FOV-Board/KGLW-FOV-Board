@@ -297,7 +297,7 @@ export default function Home() {
               text-white
             "
           >
-            Can you find all of the hidden art?
+            Click the clues to zoom to hidden art!
           </h2>
         </div>
         {/* CARDS */}
