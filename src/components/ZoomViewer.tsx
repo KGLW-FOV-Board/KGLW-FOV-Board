@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { trackEvent } from "@/src/lib/analytics";
 
 export default function ZoomViewer() {
 
@@ -157,6 +158,18 @@ export default function ZoomViewer() {
           false
         );
       };
+
+      viewer.addHandler("animation-finish", () => {
+
+        const zoom =
+          viewer.viewport.getZoom();
+
+        trackEvent("viewer_zoomed", {
+          zoom_level: Number(
+            zoom.toFixed(2)
+          ),
+        });
+      });
 
       viewer.addHandler("open", () => {
         homeZoomRef.current =

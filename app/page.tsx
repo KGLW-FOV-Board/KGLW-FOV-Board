@@ -3,8 +3,9 @@
 import ZoomViewer from "@/src/components/ZoomViewer";
 import BackgroundManager from "@/src/components/BackgroundManager";
 import localFont from "next/font/local";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { hiddenArt } from "@/src/data/hiddenArt";
+import { trackEvent } from "@/src/lib/analytics";
 
 const Gladolia = localFont({
   src: "../src/fonts/GladoliaDEMO-Regular.otf",
@@ -52,7 +53,53 @@ const card = `
 export default function Home() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const section2Ref = useRef<HTMLDivElement | null>(null);
-  const fadeRef = useRef<HTMLDivElement | null>(null);
+
+  // Track Scroll amount in google analytics
+  useEffect(() => {
+
+    let maxDepth = 0;
+
+    const onScroll = () => {
+
+      const scrollTop =
+        window.scrollY;
+
+      const docHeight =
+        document.body.scrollHeight -
+        window.innerHeight;
+
+      const percent =
+        Math.round(
+          (scrollTop / docHeight) * 100
+        );
+
+      if (
+        percent >= maxDepth + 25
+      ) {
+
+        maxDepth = percent;
+
+        trackEvent(
+          "scroll_depth",
+          {
+            percent,
+          }
+        );
+      }
+    };
+
+    window.addEventListener(
+      "scroll",
+      onScroll
+    );
+
+    return () =>
+      window.removeEventListener(
+        "scroll",
+        onScroll
+      );
+
+  }, []);
   const [artIndexes, setArtIndexes] = useState<
   Record<string, number>
   >({});
@@ -99,6 +146,11 @@ export default function Home() {
 
     const target =
       targets[currentIndex];
+
+    trackEvent("hidden_art_clicked", {
+      art_name: key,
+      target_index: currentIndex,
+    });
 
     (window as any).zoomToLocation(
       target.x,
